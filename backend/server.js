@@ -1,23 +1,33 @@
-import express from 'express';
-import mongoose from "mongoose";
+import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-import "dotenv/config"
-import { connectDB } from './config/db.js';
-import userrouter from './routes/userRoute.js';
+import "dotenv/config";
+import { connectDB } from "./config/db.js";
 
+import userrouter from "./routes/userRoute.js";
+import videoRouter from "./routes/videoRoute.js";   // ⭐ ADD VIDEO ROUTE
 
-const app=express();
+const app = express();
+
 app.use(cors());
 app.use(express.json());
-//data base connectiobn
+
+/* ⭐ IMPORTANT — serve uploaded files */
+app.use("/uploads", express.static("uploads"));
+
+/* database connection */
 connectDB();
-app.get("/", (req,res)=>{
-    res.send("API Running");
+
+/* test route */
+app.get("/", (req, res) => {
+  res.send("API Running");
 });
-//routes
-app.use('/api/user',userrouter);
+
+/* routes */
+app.use("/api/user", userrouter);
+app.use("/api/video", videoRouter);   //  ADD THIS
+
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
-  console.log("Server running on port 5000");
+  console.log(`Server running on port ${PORT}`);
 });
