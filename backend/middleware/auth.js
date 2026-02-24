@@ -14,14 +14,14 @@ const auth = async (req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    // ⭐ fetch FULL USER FROM DB
+    // fetch FULL USER FROM DB
     const user = await User.findById(decoded.id);
 
     if (!user) {
       return res.status(401).json({ success:false, msg:"User not found" });
     }
 
-    // ⭐ THIS LINE IS CRITICAL
+    // THIS LINE IS CRITICAL
     req.user = user;
 
     next();

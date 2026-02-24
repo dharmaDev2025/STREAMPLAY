@@ -58,7 +58,7 @@ export const watchVideo = async (req, res) => {
     const video = await Video.findById(videoId);
     if (!video) return res.json({ success: false, msg: "Video not found" });
 
-    // ✅ Free video → allow anyone
+    //  Free video → allow anyone
     if (video.subscription === "free") return res.json({ success: true, video });
 
     // Premium video → check user
@@ -86,7 +86,7 @@ export const watchVideo = async (req, res) => {
     const user = await User.findById(decoded.id);
     console.log("User subscription info:", user?.subscription); // Debug
 
-    // ❌ Check active subscription
+    //  Check active subscription
     if (
       !user?.subscription ||
       user.subscription.status !== "active" ||
@@ -99,7 +99,7 @@ export const watchVideo = async (req, res) => {
       });
     }
 
-    // ✅ Premium user → allow
+    //  Premium user → allow
     return res.json({ success: true, video });
   } catch (err) {
     console.error("watchVideo error:", err.message);

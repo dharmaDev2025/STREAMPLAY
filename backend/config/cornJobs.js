@@ -7,17 +7,17 @@ export const subscriptionReminderJob = () => {
   console.log("✅ Subscription Reminder Cron Started");
 
   // =============================
-  // 🔴 FOR TESTING → every minute
+  //  FOR TESTING → every minute
   // =============================
   // cron.schedule("* * * * *", async () => {
 
   // =============================
-  // ✅ PRODUCTION → every day 9 AM
+  //  PRODUCTION → every day 9 AM
   // =============================
   cron.schedule("0 9 * * *", async () => {
 
     try {
-      console.log("🔥 Running subscription reminder job...");
+      console.log(" Running subscription reminder job...");
 
       const today = new Date();
 
@@ -54,10 +54,10 @@ export const subscriptionReminderJob = () => {
           `
 Hello ${user.name},
 
-⏳ Your STREAMPLAY subscription is expiring soon.
+Your STREAMPLAY subscription is expiring soon.
 
-📦 Plan: ${planName}
-📅 Expiry Date: ${user.subscription.expireDate.toDateString()}
+ Plan: ${planName}
+ Expiry Date: ${user.subscription.expireDate.toDateString()}
 
 Please renew to continue watching premium content.
 
@@ -68,10 +68,10 @@ Please renew to continue watching premium content.
         console.log(`📧 Reminder sent to ${user.email}`);
       }
 
-      console.log("✅ Reminder job finished");
+      console.log("Reminder job finished");
 
     } catch (err) {
-      console.log("❌ Error in reminder job:", err.message);
+      console.log(" Error in reminder job:", err.message);
     }
 
   });

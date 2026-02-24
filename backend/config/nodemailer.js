@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 
 export const sendEmail = async (to, subject, text) => {
 
-  console.log("📨 MAIL FUNCTION CALLED");
+  console.log(" MAIL FUNCTION CALLED");
 
   try {
 
@@ -21,11 +21,11 @@ export const sendEmail = async (to, subject, text) => {
       text,
     });
 
-    console.log("✅ MAIL SENT:", info.response);
+    console.log(" MAIL SENT:", info.response);
 
   } catch (err) {
 
-    console.log("❌ MAIL ERROR:", err);
+    console.log(" MAIL ERROR:", err);
 
   }
 };

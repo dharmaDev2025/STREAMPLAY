@@ -19,7 +19,7 @@ export const registercontroller = async (req,res)=>{
       email,
       password:hashed,
 
-      // ⭐ ADD DEFAULT SUBSCRIPTION
+      //  ADD DEFAULT SUBSCRIPTION
       subscription:{
         plan:null,
         status:"inactive",
@@ -58,7 +58,7 @@ export const logincontroller = async (req,res)=>{
       success:true,
       token,
 
-      // ⭐ RETURN FULL USER
+      //  RETURN FULL USER
       user:{
         _id:user._id,
         name:user.name,
@@ -78,7 +78,7 @@ export const logincontroller = async (req,res)=>{
 export const getMe = async (req,res)=>{
   try{
 
-    // ⭐ ALWAYS FETCH FROM DATABASE
+    //  ALWAYS FETCH FROM DATABASE
     const user = await User.findById(req.user._id).select("-password");
 
     if(!user){

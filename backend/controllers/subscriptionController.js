@@ -7,7 +7,7 @@ export const buySubscription = async (req, res) => {
 
   try {
 
-    console.log("🔥 BUY API HIT");
+    console.log(" BUY API HIT");
 
     // ================= SAFE TOKEN USER =================
     if(!req.user || !req.user._id){
@@ -89,10 +89,10 @@ export const buySubscription = async (req, res) => {
 
     });
 
-    console.log("✅ STRIPE SESSION:", session.url);
+    console.log(" STRIPE SESSION:", session.url);
 
     // ====================================================
-    // ⭐ TEMP LOCAL AUTO ACTIVATE (FOR TESTING ONLY)
+    //  TEMP LOCAL AUTO ACTIVATE (FOR TESTING ONLY)
     // remove this later when using webhook
     // ====================================================
 
@@ -118,12 +118,12 @@ export const buySubscription = async (req, res) => {
       }
     );
 
-    console.log("🟢 DB UPDATED");
+    console.log(" DB UPDATED");
 
     // ================= EMAIL =================
     await sendEmail(
       user.email,
-      "STREAMPLAY Subscription Activated ✅",
+      "STREAMPLAY Subscription Activated ",
       `Hello ${user.name},
 
 Your subscription is ACTIVE
@@ -142,7 +142,7 @@ Enjoy streaming!`
   }
   catch(err){
 
-    console.log("❌ BUY ERROR:", err);
+    console.log(" BUY ERROR:", err);
 
     res.status(500).json({
       success:false,
